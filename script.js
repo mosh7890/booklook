@@ -1,15 +1,14 @@
 var bookArray = [];
 
-$.ajaxSetup({
-    beforeSend:function(){
-        $(".loading").show();
-    },
-    complete:function(){
-        $(".loading").hide();
-    }
-})
-
 var fetch = function (url) {
+    $.ajaxSetup({
+        beforeSend: function () {
+            $(".loading").show();
+        },
+        complete: function () {
+            $(".loading").hide();
+        }
+    })
     $.ajax({
         method: "GET",
         url: url,
@@ -34,7 +33,7 @@ var fetch = function (url) {
                         var img = data.items[i].volumeInfo.imageLinks.thumbnail;
                     }
                     else {
-                        var img = "https://cdn.browshot.com/static/images/not-found.png";
+                        var img = "https://cdn1.iconfinder.com/data/icons/school-supplies-3/64/folder_denied_stop_not_found_deleted_error-128.png";
                     }
                     bookToPush = createObj(title, authors, description, img);
                     bookArray.push(bookToPush);
