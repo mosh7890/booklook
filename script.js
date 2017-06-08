@@ -1,4 +1,14 @@
 var bookArray = [];
+
+$.ajaxSetup({
+    beforeSend:function(){
+        $(".loading").show();
+    },
+    complete:function(){
+        $(".loading").hide();
+    }
+})
+
 var fetch = function (url) {
     $.ajax({
         method: "GET",
@@ -6,7 +16,7 @@ var fetch = function (url) {
         success: function (data) {
             if (data.totalItems > 0) {
                 bookArray = [];
-                for (i = 0; i <= 8 && i <= data.totalItems; i++) {
+                for (i = 0; i <= 9 && i <= data.totalItems; i++) {
                     var title = data.items[i].volumeInfo.title;
                     if (data.items[i].volumeInfo.authors) {
                         var authors = data.items[i].volumeInfo.authors[0];
@@ -57,8 +67,7 @@ var listBook = function () {
     var source = $('#new-book').html();
     var template = Handlebars.compile(source);
     for (i = 0; i < bookArray.length; i++) {
-        var newHTML = template({ Title: bookArray[i].title });
-        //, Authors: bookArray[i].authors, Description: bookArray[i].description, Img: bookArray[i].img });
+        var newHTML = template({ Title: bookArray[i].title, Authors: bookArray[i].authors, Description: bookArray[i].description, Img: bookArray[i].img });
         appendTo.append(newHTML);
     }
 }
@@ -68,4 +77,8 @@ $('.search1').on('click', function () {
     var searchVal = $("#searchVal").val();
     var completeUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + selected + searchVal;
     fetch(completeUrl);
+})
+
+$('.book-list').on('click', '.book-container', function () {
+    $(this).siblings().remove();
 })
