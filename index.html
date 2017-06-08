@@ -14,21 +14,38 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="page-header">
-                    <h1>Booklook  <i class="fa fa-eye fa-lg" aria-hidden="true"></i></h1>
+                    <h1>Booklook <i class="fa fa-eye fa-lg" aria-hidden="true"></i></h1>
                 </div>
+
                 <form>
-                    <h3>Search by ISBN</h3>
+                    <h3>Search for a Book!</h3>
                     <div class="form-group">
-                        <input type="text" id="searchval" class="form-control" placeholder="ISBN Number">
+                        <input type="text" id="searchVal" class="form-control" placeholder="Enter a Title">
                         </input>
                     </div>
                     <button class="btn btn-primary search1" type="button">Search</button>
+                    <label class="radio-inline"><input checked type="radio" name="optradio" value="search+intitle:">By Title.</label>
+                    <label class="radio-inline"><input type="radio" name="optradio" value="search+inauthor:">By Author.</label>
+                    <label class="radio-inline"><input type="radio" name="optradio" value="isbn:">By ISBN.</label>
                 </form>
+
+                <div class="book-list">
+                </div>
+
+                <script id="new-book" type="text/x-handlebars-template">
+                    <div class="book-container">
+                        <h3> {{ Title }} </h3>
+                        <!--<p> {{ Description }} </p>
+                        <h3>Written By: {{ Authors }} </h3>
+                        <img src=" {{ Img }}" alt="Book Pic">-->
+                    </div>
+                </script>
+
             </div>
         </div>
 
         <script src="node_modules/jquery/dist/jquery.js"></script>
-        <script src="node_modules\handlebars\dist\handlebars.js"></script>
+        <script src="node_modules/handlebars/dist/handlebars.js"></script>
         <script src="script.js"></script>
     </body>
 
